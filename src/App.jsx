@@ -5,7 +5,7 @@ import About from "./sections/About";      // About section
 import Projects from "./sections/Projects"; // Projects section
 import Contact from "./sections/Contact";  // Contact section
 import Footer from "./components/Footer";
-import Skills from "./sections/skills";
+import Skills from "./sections/Skills";
 
 // Main App component
 function App() {
