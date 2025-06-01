@@ -1,28 +1,46 @@
 import React from "react";
-import Navbar from "./components/Navbar";  // Navbar component
-import Home from "./sections/Home";        // Home section
-import About from "./sections/About";      // About section
-import Projects from "./sections/Projects"; // Projects section
-import Contact from "./sections/Contact";  // Contact section
+import { Routes, Route } from "react-router-dom";
+
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
+// Pages / Sections
+import Home from "./sections/Home";
+import About from "./sections/About";
+import Projects from "./sections/Projects";
+import Contact from "./sections/Contact";
 import Skills from "./sections/Skills";
 
-// Main App component
 function App() {
   return (
     <>
-      {/* Navbar always at the top */}
+      {/* Navbar always visible */}
       <Navbar />
 
-      {/* Main content with padding at the top to account for fixed Navbar */}
+      {/* Routed pages */}
       <main className="pt-16">
-        <Home />        {/* Home Section */}
-        <About />      {/* About Section */}
-        <Projects />   {/* Projects Section */}
-        <Skills />
-        <Contact />    {/* Contact Section */}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Home />
+                <About />
+                <Projects />
+                <Skills />
+                <Contact />
+              </>
+            }
+          />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
-      <Footer/>
+
+      {/* Footer always visible */}
+      <Footer />
     </>
   );
 }
