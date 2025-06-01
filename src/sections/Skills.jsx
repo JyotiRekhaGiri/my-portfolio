@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaReact,
   FaHtml5,
@@ -53,14 +53,6 @@ const skillsData = [
 ];
 
 const Skills = () => {
-  const [flipped, setFlipped] = useState(Array(skillsData.length).fill(false));
-
-  const toggleFlip = (index) => {
-    setFlipped((prev) =>
-      prev.map((val, i) => (i === index ? !val : val))
-    );
-  };
-
   return (
     <section
       id="skills"
@@ -72,48 +64,50 @@ const Skills = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl w-full">
         {skillsData.map((skill, index) => (
-          <div
-            key={index}
-            onClick={() => toggleFlip(index)}
-            className="cursor-pointer perspective"
-          >
-            <div
-              className={`relative w-full h-48 transition-transform duration-700 transform-style-preserve-3d ${
-                flipped[index] ? "rotate-y-180" : ""
-              }`}
-            >
-              {/* Front Side */}
-              <div className="absolute w-full h-full bg-white shadow-lg rounded-lg flex flex-col items-center justify-center backface-hidden p-6">
+          <div key={index} className="flip-card">
+            <div className="flip-card-inner">
+              {/* Front */}
+              <div className="flip-card-front bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
                 <div className="text-5xl mb-4">{skill.icon}</div>
-                <p className="text-lg font-medium text-gray-700">
-                  {skill.name}
-                </p>
+                <p className="text-lg font-medium text-gray-700">{skill.name}</p>
               </div>
 
-              {/* Back Side */}
-              <div className="absolute w-full h-full bg-white shadow-lg rounded-lg transform rotate-y-180 flex items-center justify-center backface-hidden p-6">
-                <p className="text-sm text-gray-600 text-center">
-                  {skill.proficiency}
-                </p>
+              {/* Back */}
+              <div className="flip-card-back bg-white rounded-lg shadow-lg p-6 flex items-center justify-center text-center">
+                <p className="text-sm text-gray-600">{skill.proficiency}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Tailwind CSS Custom Utility */}
+      {/* Flip CSS */}
       <style>{`
-        .perspective {
+        .flip-card {
           perspective: 1000px;
+          width: 100%;
+          height: 12rem;
         }
-        .transform-style-preserve-3d {
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
           transform-style: preserve-3d;
+          transition: transform 0.8s;
         }
-        .rotate-y-180 {
+        .flip-card:hover .flip-card-inner {
           transform: rotateY(180deg);
         }
-        .backface-hidden {
+        .flip-card-front,
+        .flip-card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
           backface-visibility: hidden;
+          border-radius: 0.5rem;
+        }
+        .flip-card-back {
+          transform: rotateY(180deg);
         }
       `}</style>
     </section>
