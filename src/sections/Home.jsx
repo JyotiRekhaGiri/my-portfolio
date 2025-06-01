@@ -16,10 +16,13 @@ const Home = () => {
           Front-End Developer | React Enthusiast
         </h2>
 
+        {/* ATS-friendly Career Objective */}
         <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
-          I specialize in crafting beautiful and responsive web applications
-          using <strong>React</strong>, <strong>Tailwind CSS</strong>, and modern web technologies.
-          Let’s build something amazing together!
+          Front-End Developer with a strong foundation in <strong>React</strong>,{" "}
+          <strong>Tailwind CSS</strong>, and modern web technologies. Passionate
+          about creating responsive, user-friendly interfaces that deliver
+          exceptional user experiences. Seeking an opportunity to contribute to
+          innovative teams and build scalable, performance-driven web applications.
         </p>
 
         <div className="flex flex-col md:flex-row justify-center items-center gap-4">
